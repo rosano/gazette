@@ -5,7 +5,23 @@
 }(this, (function(exports) { 'use strict';
 
 	if (typeof window === 'object') {
-		window.document.addEventListener('DOMContentLoaded', () => Array.from(document.querySelectorAll('script[data-gazette]')).forEach(e => e.insertAdjacentElement('afterend', document.createElement('div')).innerHTML = `
+		// https://stackoverflow.com/questions/2592092/executing-script-elements-inserted-with-innerhtml
+		var setInnerHTML = function(elm, html) {
+		  elm.innerHTML = html;
+		  Array.from(elm.querySelectorAll("script")).forEach( oldScript => {
+		    const newScript = document.createElement("script");
+		    Array.from(oldScript.attributes)
+		      .forEach( attr => newScript.setAttribute(attr.name, attr.value) );
+		    newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+		    oldScript.parentNode.replaceChild(newScript, oldScript);
+		  });
+		}
+
+		window.document.addEventListener('DOMContentLoaded', () =>
+			Array.from(document.querySelectorAll('script[data-gazette]')).forEach(e =>
+				setInnerHTML(
+					e.insertAdjacentElement('afterend', document.createElement('div')),
+				`
 <div class="ROCOGazette OLSKDecorModule">
 
 <h2 class="ROCOGazetteHeading">Follow my journey</h2>
@@ -18,7 +34,8 @@
 
 <p class="OLSKFollow">Or more frequently on <a class="OLSKFollowMastodon" target="_blank" href="https://rosano.ca/mastodon">Mastodon</a>, <a class="OLSKFollowBluesky" target="_blank" href="https://rosano.ca/bluesky">Bluesky</a>, and <a href="https://rosano.ca/log">Journal</a>.
 
-</div>`))
+</div>`
+				)));
 	}
 
 	Object.defineProperty(exports, '__esModule', {
