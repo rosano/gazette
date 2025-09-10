@@ -26,7 +26,7 @@
 
 <h2 class="ROCOGazetteHeading">Follow my journey</h2>
 
-<p>Quarterly updates on projects, writing, music, links, and life, right in your inbox.</p>
+<p>Quarterly updates on projects, writing, music, reads, and life, right in your inbox.</p>
 
 <div class="ROCOBulletin">
   <script src="https://cdn.jsdelivr.net/ghost/signup-form@~0.3/umd/signup-form.min.js" data-button-color="#424242" data-button-text-color="#FFFFFF" data-site="https://occasion.rosano.ca/" data-locale="en" async></script>
