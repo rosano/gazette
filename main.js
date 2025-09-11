@@ -32,7 +32,7 @@
   <script src="https://cdn.jsdelivr.net/ghost/signup-form@~0.3/umd/signup-form.min.js" data-button-color="#424242" data-button-text-color="#FFFFFF" data-site="https://occasion.rosano.ca/" data-locale="en" async></script>
 </div>
 
-<p class="OLSKFollow">Or more frequently on <a class="OLSKFollowMastodon" target="_blank" href="https://rosano.ca/mastodon">Mastodon</a>, <a class="OLSKFollowBluesky" target="_blank" href="https://rosano.ca/bluesky">Bluesky</a>, and <a href="https://rosano.ca/log">Journal</a>.
+<p class="OLSKFollow">More often on <a class="OLSKFollowMastodon" target="_blank" href="https://rosano.ca/mastodon">Mastodon</a>, <a class="OLSKFollowBluesky" target="_blank" href="https://rosano.ca/bluesky">Bluesky</a>, and <a href="https://rosano.ca/log">Journal</a>.
 
 </div>`
 				)));
