@@ -22,19 +22,39 @@
 				setInnerHTML(
 					e.insertAdjacentElement('afterend', document.createElement('div')),
 				`
-<div class="ROCOGazette OLSKDecorModule">
+<div class="RCGazette">
 
-<h2 class="ROCOGazetteHeading">Quarterly updates from me</h2>
+<h2>Quarterly updates from me</h2>
 
 <p>Projects, writing, music, reads, and life, right in your inbox.</p>
 
-<div class="ROCOBulletin">
+<div class="RCBulletin">
   <script src="https://cdn.jsdelivr.net/ghost/signup-form@~0.3/umd/signup-form.min.js" data-button-color="#424242" data-button-text-color="#FFFFFF" data-site="https://occasion.rosano.ca/" data-locale="en" async></script>
 </div>
 
-<p class="OLSKFollow">More often on <a class="OLSKFollowMastodon" target="_blank" href="https://rosano.ca/mastodon">Mastodon</a>, <a class="OLSKFollowBluesky" target="_blank" href="https://rosano.ca/bluesky">Bluesky</a>, and <a href="https://rosano.ca/log">Journal</a>.
+<p class="RCFollow">More often on <a target="_blank" href="https://rosano.ca/mastodon">Mastodon</a>, <a target="_blank" href="https://rosano.ca/bluesky">Bluesky</a>, and <a target="_blank" href="https://rosano.ca/log">Journal</a>.
 
-</div>`
+</div>
+<style>
+.RCGazette {
+  --spacing: 20px;
+  --corner: 3px;
+  --foreground: white;
+
+  padding: calc(var(--spacing) / 2) var(--spacing);
+  border-radius: var(--corner);
+  border: 1px solid black;
+
+  margin: 80px 0;
+  
+  background: #333;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+}
+
+.RCGazette * {
+  color: white;
+}
+</style>`
 				)));
 	}
 
