@@ -41,24 +41,27 @@
 }
 </style>`,
 
-	// https://stackoverflow.com/questions/2592092/executing-script-elements-inserted-with-innerhtml
-	setInnerHTML (elm, html) {
-	  elm.innerHTML = html;
-	  Array.from(elm.querySelectorAll("script")).forEach( oldScript => {
-	    const newScript = document.createElement("script");
-	    Array.from(oldScript.attributes)
-	      .forEach( attr => newScript.setAttribute(attr.name, attr.value) );
-	    newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-	    oldScript.parentNode.replaceChild(newScript, oldScript);
-	  });
-	},
+		// https://stackoverflow.com/questions/2592092/executing-script-elements-inserted-with-innerhtml
+		setInnerHTML (elm, html) {
+		  elm.innerHTML = html;
+		  Array.from(elm.querySelectorAll("script")).forEach( oldScript => {
+		    const newScript = document.createElement("script");
+		    Array.from(oldScript.attributes)
+		      .forEach( attr => newScript.setAttribute(attr.name, attr.value) );
+		    newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+		    oldScript.parentNode.replaceChild(newScript, oldScript);
+		  });
+		},
+
+		loadElement (e) {
+			mod.setInnerHTML(e.insertAdjacentElement('afterend', document.createElement('div')), mod.template)
+		},
 	
 	};
 	
 	if (typeof window === 'object') {
 		window.document.addEventListener('DOMContentLoaded', () =>
-			Array.from(document.querySelectorAll('[data-gazette]')).forEach(e =>
-				mod.setInnerHTML(e.insertAdjacentElement('afterend', document.createElement('div')), mod.template)));
+			Array.from(document.querySelectorAll('[data-gazette]')).forEach(mod.loadElement));
 	}
 
 	Object.assign(exports, mod);
