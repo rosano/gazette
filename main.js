@@ -18,7 +18,7 @@
 		}
 
 		window.document.addEventListener('DOMContentLoaded', () =>
-			Array.from(document.querySelectorAll('script[data-gazette]')).forEach(e =>
+			Array.from(document.querySelectorAll('[data-gazette]')).forEach(e =>
 				setInnerHTML(
 					e.insertAdjacentElement('afterend', document.createElement('div')),
 				`
