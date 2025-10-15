@@ -4,24 +4,7 @@
 			(factory((global.gazette = global.gazette || {})));
 }(this, (function(exports) { 'use strict';
 
-	if (typeof window === 'object') {
-		// https://stackoverflow.com/questions/2592092/executing-script-elements-inserted-with-innerhtml
-		var setInnerHTML = function(elm, html) {
-		  elm.innerHTML = html;
-		  Array.from(elm.querySelectorAll("script")).forEach( oldScript => {
-		    const newScript = document.createElement("script");
-		    Array.from(oldScript.attributes)
-		      .forEach( attr => newScript.setAttribute(attr.name, attr.value) );
-		    newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-		    oldScript.parentNode.replaceChild(newScript, oldScript);
-		  });
-		}
-
-		window.document.addEventListener('DOMContentLoaded', () =>
-			Array.from(document.querySelectorAll('[data-gazette]')).forEach(e =>
-				setInnerHTML(
-					e.insertAdjacentElement('afterend', document.createElement('div')),
-				`
+	const template = `
 <div class="RCGazette">
 
 <h2>Quarterly updates from me</h2>
@@ -54,9 +37,30 @@
 .RCGazette * {
   color: white;
 }
-</style>`
-				)));
+</style>`;
+
+	if (typeof window === 'object') {
+		// https://stackoverflow.com/questions/2592092/executing-script-elements-inserted-with-innerhtml
+		var setInnerHTML = function(elm, html) {
+		  elm.innerHTML = html;
+		  Array.from(elm.querySelectorAll("script")).forEach( oldScript => {
+		    const newScript = document.createElement("script");
+		    Array.from(oldScript.attributes)
+		      .forEach( attr => newScript.setAttribute(attr.name, attr.value) );
+		    newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+		    oldScript.parentNode.replaceChild(newScript, oldScript);
+		  });
+		}
+
+		window.document.addEventListener('DOMContentLoaded', () =>
+			Array.from(document.querySelectorAll('[data-gazette]')).forEach(e =>
+				setInnerHTML(
+					e.insertAdjacentElement('afterend', document.createElement('div')),template)));
 	}
+
+	Object.assign(exports, {
+		template,
+	});
 
 	Object.defineProperty(exports, '__esModule', {
 		value: true
